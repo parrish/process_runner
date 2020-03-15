@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "fork_pool"
+require "process_runner"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
