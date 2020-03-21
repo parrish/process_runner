@@ -12,7 +12,7 @@ module ProcessRunner
 
     it "captures output" do
       expect(success.stdout).to eq("works\n")
-      expect(failure.stderr).to eq("rm: doesnotexist: No such file or directory\n")
+      expect(failure.stderr).to match(/rm.+doesnotexist.+No such file or directory/)
     end
 
     it "captures errors" do
@@ -21,7 +21,7 @@ module ProcessRunner
     end
 
     it "accepts input" do
-      expect(pool.spawn("sed 's/hi/bye/'", input: "hi").stdout).to eq("bye\n")
+      expect(pool.spawn("sed 's/hi/bye/'", input: "hi").stdout.chomp).to match("bye")
     end
 
     context "on unexpected exit codes" do
